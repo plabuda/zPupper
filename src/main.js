@@ -1,4 +1,5 @@
 import * as zdog_module from './zdog-point.js'
+import * as Zdog from 'zdog'
 
 let illo = new Zdog.Illustration({
   // set canvas with selector
