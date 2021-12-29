@@ -1,11 +1,22 @@
 import * as zdog_module from './zdog-point'
 import * as Zdog from 'zdog'
 import * as VectorUtils from './vector_utils'
+import {Vector} from 'zdog';
 
 let illo = new Zdog.Illustration({
   // set canvas with selector
   element: '.inner',
 });
+
+function TrackVectorArray(array: Vector[], start: Vector, stop: Vector, current: Vector, progress: number) : void
+{
+  const newCenter = VectorUtils.Ease(start, stop, progress);
+  const diff = newCenter.copy();
+  diff.subtract(current);
+  current.set(newCenter);
+  VectorUtils.AddToArray(array, diff);
+  
+}
 
 const testArray : Zdog.Vector[] = 
 [
@@ -21,9 +32,12 @@ console.log(VectorUtils.Sum(testArray));
 console.log(VectorUtils.Average(testArray));
 
 let center = Dot('#900', { x: 0, y: 0, z: 0 });
-let centerpos = center.translate;
 
-let target = new Zdog.Vector( { x: 0, y: 0, z: 0 });
+let start = new Vector();
+let stop = start.copy();
+let current = center.translate;
+let progress = 0;
+
 let points: Zdog.Shape[] = [];
 
 function reducer(prev: { x: any; y: any; z: any; }, curr: { translate: { x: any; y: any; z: any; }; }) {
@@ -48,38 +62,32 @@ function addPoint(x: number, y: number, z: number) {
   let dot = Dot('#F93', { x, y, z });
   points.push(dot);
   posArray.push(dot.translate);
-  centerpos.set(VectorUtils.Average(posArray));
-  let inverted = centerpos.copy();
-  inverted.multiply(-1);
-  VectorUtils.AddToArray(posArray, inverted);
-  //var res = points.reduce(reducer, { x: 0, y: 0, z: 0 });
-  //console.log(res);
- // center.translate.x = res.x / points.length;
-  //center.translate.y = res.y / points.length;
- // center.translate.z = res.z / points.length;
-
+  
+  // Set the beginning of ease:
+  start.set(VectorUtils.Average(posArray));
+  current.set(start);
+  progress = 0;
 }
 
 function addRandomPoint() {
   addPoint(
-    Math.random() * 300 - 150,
-    Math.random() * 300 - 150,
-    Math.random() * 300 - 150
+    Math.random() * 400,
+    Math.random() * 400,
+    Math.random() * 400
   )
 }
 
 // create illo
 
-// add circle
-new Zdog.Ellipse({
-  addTo: illo,
-  diameter: 180,
-  stroke: 20,
-  color: '#636'
-});
-
 function animate() {
-  VectorUtils.Ease(centerpos, target, 0.05);
+  progress += 1/90;
+  if( progress > 1) 
+  {
+    progress = 1;
+  }
+
+  TrackVectorArray(posArray, start, stop, current, progress);
+
   // rotate illo each frame
   illo.rotate.y += 0.01;
   illo.updateRenderGraph();
@@ -91,10 +99,10 @@ function animate() {
 function populate(amount: number) {
   if (amount > 0) {
     addRandomPoint();
-    setTimeout(() => populate(amount - 1), 1500);
+    setTimeout(() => populate(amount - 1), 10);
   }
 }
 
-populate(10);
+populate(300);
 animate();
 zdog_module.helloWorld();

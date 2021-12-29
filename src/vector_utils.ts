@@ -1,4 +1,4 @@
-import { Vector, lerp } from "zdog";
+import { Vector, lerp, easeInOut } from "zdog";
 
 export function Sum(array: Vector[]): Vector {
     const accumulator = new Vector();
@@ -34,11 +34,7 @@ export function AddToArray(array: Vector[], operand: Vector) : void
     array.forEach(callback);
 }
 
-export function Ease(operand: Vector, target: Vector, alpha :number ) : void {
-    operand.set(
-    {
-        x: lerp(operand.x, target.x, alpha),
-        y: lerp(operand.y, target.y, alpha),
-        z: lerp(operand.z, target.z, alpha),
-    });
+export function Ease(a: Vector, b: Vector, progress :number ) : Vector {
+    const alpha = easeInOut(progress, 2);
+    return Lerp(a,b,alpha);   
 }
