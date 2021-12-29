@@ -9,9 +9,7 @@ module.exports = {
     // Mount "public" to the root URL path ("/*") and serve files with zero transformations:
     public: { url: '/', static: true, resolve: false },
   },
-  plugins: [
-    /* ... */
-  ],
+  plugins: ['@snowpack/plugin-typescript'],
   optimize: {
     bundle: true,
     minify: true,

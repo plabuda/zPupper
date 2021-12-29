@@ -1,4 +1,4 @@
-import * as zdog_module from './zdog-point.js'
+import * as zdog_module from './zdog-point'
 import * as Zdog from 'zdog'
 
 let illo = new Zdog.Illustration({
@@ -8,9 +8,9 @@ let illo = new Zdog.Illustration({
 
 let center = Dot('#900', { x: 0, y: 0, z: 0 });
 let oldCenter = { x: 0, y: 0, z: 0 };
-let points = [];
+let points: Zdog.Shape[] = [];
 
-function reducer(prev, curr) {
+function reducer(prev: { x: any; y: any; z: any; }, curr: { translate: { x: any; y: any; z: any; }; }) {
   return {
     'x': prev.x + curr.translate.x,
     'y': prev.y + curr.translate.y,
@@ -18,7 +18,7 @@ function reducer(prev, curr) {
   };
 }
 
-function Dot(color, translation) {
+function Dot(color: string, translation: { x: any; y: any; z: any; }) {
   return new Zdog.Shape({
     addTo: illo,
     stroke: 25,
@@ -28,7 +28,7 @@ function Dot(color, translation) {
 }
 
 
-function addPoint(x, y, z) {
+function addPoint(x: number, y: number, z: number) {
   points.push(Dot('#F932', { x, y, z }));
   var res = points.reduce(reducer, { x: 0, y: 0, z: 0 });
   console.log(res);
@@ -51,7 +51,7 @@ function addRandomPoint() {
 // add circle
 new Zdog.Ellipse({
   addTo: illo,
-  diameter: 80,
+  diameter: 180,
   stroke: 20,
   color: '#6361'
 });
@@ -65,7 +65,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-function populate(amount) {
+function populate(amount: number) {
   if (amount > 0) {
     addRandomPoint();
     setTimeout(() => populate(amount - 1), 900);
