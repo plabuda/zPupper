@@ -1,0 +1,16 @@
+{
+  "name": "zpupper",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plabuda/zPupper.git"
+  },
+  "keywords": [],
+  "author": "Piotr Łabuda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plabuda/zPupper/issues"
+  },
+  "homepage": "https://github.com/plabuda/zPupper#readme"
+}
