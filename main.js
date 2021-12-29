@@ -1,4 +1,4 @@
-// zdog-demo.js
+import * as zdog_module from './zdog-point.js'
 
 let illo = new Zdog.Illustration({
   // set canvas with selector
@@ -28,7 +28,7 @@ function Dot(color, translation) {
 
 
 function addPoint(x, y, z) {
-  points.push(Dot('#F93', { x, y, z }));
+  points.push(Dot('#F932', { x, y, z }));
   var res = points.reduce(reducer, { x: 0, y: 0, z: 0 });
   console.log(res);
   center.translate.x = res.x / points.length;
@@ -52,7 +52,7 @@ new Zdog.Ellipse({
   addTo: illo,
   diameter: 80,
   stroke: 20,
-  color: '#636'
+  color: '#6361'
 });
 
 function animate() {
@@ -73,3 +73,4 @@ function populate(amount) {
 
 populate(10);
 animate();
+zdog_module.helloWorld();

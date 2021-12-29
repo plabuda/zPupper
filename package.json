@@ -6,6 +6,10 @@
     "type": "git",
     "url": "git+https://github.com/plabuda/zPupper.git"
   },
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
   "keywords": [],
   "author": "Piotr Łabuda",
   "license": "MIT",
