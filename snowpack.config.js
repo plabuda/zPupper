@@ -7,7 +7,7 @@ module.exports = {
     // Same behavior as the "src" example above:
     src: { url: '/scripts' },
     // Mount "public" to the root URL path ("/*") and serve files with zero transformations:
-    public: { url: '/', static: true, resolve: false },
+    public: { url: '/', static: true},
   },
   plugins: ['@snowpack/plugin-typescript'],
   optimize: {
