@@ -39,7 +39,16 @@ export function Ease(a: Vector, b: Vector, progress: number): Vector {
 
 export function Snap(a: Vector, b: Vector, distance: number): void {
     // Vector goes "From B to A"
-    const diff = b.copy().subtract(a);
+    let diff = b.copy().subtract(a);
+    while (diff.magnitude() < 0.5) {
+        diff = new Vector({
+            x: Math.random() * 4 - 2,
+            y: Math.random() * 4 - 2,
+            z: Math.random() * 4 - 2,
+
+        })
+    }
+
     const magnitude = diff.magnitude();
 
     // Prevent explosions

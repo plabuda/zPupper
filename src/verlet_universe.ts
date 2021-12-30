@@ -59,7 +59,9 @@ export class Universe {
     }
 
     AddShape(shape: Shape): number {
+        const transform = shape.translate.copy();
         this.illo.addChild(shape);
+        shape.translate.set(transform);
         return this.points.push(shape.translate) - 1;
     }
 
