@@ -16,6 +16,42 @@ function addRandomPoint(): number {
   )
 }
 
+new Zdog.Box({
+  addTo: uni.illo,
+  width: 400,
+  height: 400,
+  depth : 400,
+  frontFace: false,
+  backface : '#888',
+  topFace : false,
+  bottomFace: '#999',
+  leftFace : false,
+  rightFace: '#BBB'
+
+});
+
+new Zdog.Ellipse({
+  addTo: uni.illo,
+  translate: { y: 190},
+  rotate: { x : Zdog.TAU / 4},
+  stroke: 20,
+  diameter: 160,
+  color: '#222',
+  fill: true,
+
+});
+
+new Zdog.Ellipse({
+  addTo: uni.illo,
+  translate: { y: 180},
+  rotate: { x : Zdog.TAU / 4},
+  stroke: 10,
+  diameter: 60,
+  color: '#DDD',
+  fill: true,
+
+});
+
 function animate() {
 
  // uni.illo.rotate.y += 0.01;

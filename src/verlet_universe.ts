@@ -1,4 +1,4 @@
-import { Illustration, Shape, Vector } from 'zdog';
+import { Illustration, Shape, TAU, Vector } from 'zdog';
 import { AddToArray, Average, Snap } from './vector_utils';
 
 function RandomHueColorString(): string {
@@ -26,7 +26,9 @@ export class Universe {
     constructor(canvas: string) {
         this.illo = new Illustration(
             {
-                element: canvas
+                element: canvas,
+                rotate : { x : -TAU / 8,
+                y : -TAU / 8 }
             }
         );
     }
@@ -68,14 +70,14 @@ export class Universe {
     AddStick(begin: number, end: number, distance: number, color: string) {
         const path = new Shape(
             {
-                color : color,
+                color: color,
                 addTo: this.illo,
                 stroke: 10,
                 path:
-                [
-                    this.points[begin],
-                    this.points[end]
-                ]
+                    [
+                        this.points[begin],
+                        this.points[end]
+                    ]
             }
         );
         const stick = new Stick(begin, end, distance, path);
