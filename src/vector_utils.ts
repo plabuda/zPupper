@@ -18,8 +18,7 @@ export function Average(array: Vector[]): Vector {
     )
 }
 
-export function Lerp(a: Vector, b: Vector, alpha:number) : Vector
-{
+export function Lerp(a: Vector, b: Vector, alpha: number): Vector {
     return new Vector(
         {
             x: lerp(a.x, b.x, alpha),
@@ -28,13 +27,30 @@ export function Lerp(a: Vector, b: Vector, alpha:number) : Vector
         });
 }
 
-export function AddToArray(array: Vector[], operand: Vector) : void
-{
+export function AddToArray(array: Vector[], operand: Vector): void {
     const callback = (element: Vector) => element.add(operand);
     array.forEach(callback);
 }
 
-export function Ease(a: Vector, b: Vector, progress :number ) : Vector {
+export function Ease(a: Vector, b: Vector, progress: number): Vector {
     const alpha = easeInOut(progress, 2);
-    return Lerp(a,b,alpha);   
+    return Lerp(a, b, alpha);
+}
+
+export function Snap(a: Vector, b: Vector, distance: number): void {
+    // Vector goes "From B to A"
+    const diff = b.copy().subtract(a);
+    const magnitude = diff.magnitude();
+
+    // Prevent explosions
+    if (magnitude < 0.5) return;
+
+    const factor = distance / magnitude;
+
+    const midpoint = b.copy().add(a).multiply(0.5);
+    const to_b = b.copy().subtract(midpoint).multiply(factor);
+    const to_a = a.copy().subtract(midpoint).multiply(factor);
+
+    a.set(midpoint.copy().add(to_a));
+    b.set(midpoint.copy().add(to_b));
 }

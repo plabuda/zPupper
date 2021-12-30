@@ -1,17 +1,16 @@
 import { Illustration, Shape, Vector } from 'zdog';
-import { AddToArray, Average, Ease } from './vector_utils';
+import { AddToArray, Average, Snap } from './vector_utils';
 
 function RandomHueColorString(): string {
 
-    const hue = Math.random() * 360;    
+    const hue = Math.random() * 360;
     return `hsla(${hue}, 60%, 50%, 1)`;
 }
 
-class Stick{
+class Stick {
     distance: number;
 
-    constructor(readonly begin: number, readonly end: number, distance: number)
-    {
+    constructor(readonly begin: number, readonly end: number, distance: number) {
         this.distance = distance;
     }
 }
@@ -51,6 +50,10 @@ export class Universe {
     AddShape(shape: Shape): number {
         this.illo.addChild(shape);
         return this.points.push(shape.translate) - 1;
+    }
+
+    Snap(first: number, second: number, distance: number) {
+        Snap(this.points[first], this.points[second], distance);
     }
 
 }

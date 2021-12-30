@@ -1,4 +1,5 @@
 import * as Zdog from 'zdog';
+import { Snap } from './vector_utils';
 import { Universe } from './verlet_universe';
 
 let uni = new Universe('.inner');
@@ -29,5 +30,17 @@ function populate(amount: number) {
   }
 }
 
-populate(5);
+populate(4);
 animate();
+
+
+setTimeout(() =>
+  setInterval(
+    () => {
+
+      uni.Snap(0, 1, 60);
+      uni.Snap(1, 2, 60);
+      uni.Snap(0, 2, 60);
+    }, 1000
+  ), 8000
+);
