@@ -3,7 +3,8 @@ import { AddToArray, Average, Ease } from './vector_utils';
 
 function RandomHueColorString(): string {
 
-    return `hsla(100, 60%, 50%, 1)`;
+    const hue = Math.random() * 360;    
+    return `hsla(${hue}, 60%, 50%, 1)`;
 }
 
 export class Universe {
