@@ -1,6 +1,11 @@
 import { Vector, Illustration, Anchor, Shape } from 'zdog';
 import { AddToArray, Average, Ease } from './vector_utils';
 
+function RandomHueColorString(): string {
+
+    return `hsla(100, 60%, 50%, 1)`;
+}
+
 export class Universe {
     private readonly points: Vector[] = [];
     private readonly start: Vector = new Vector();
@@ -33,7 +38,15 @@ export class Universe {
         this.illo.updateRenderGraph();
     }
 
-    addShape(shape: Shape): void {
+    AddDot(translation: Vector): void {
+        this.AddShape(new Shape({
+            translate: translation,
+            color: RandomHueColorString(),
+            stroke: 25
+        }))
+    }
+
+    AddShape(shape: Shape): void {
         this.illo.addChild(shape);
         this.points.push(shape.translate);
         const average = Average(this.points);

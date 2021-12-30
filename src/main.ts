@@ -15,23 +15,27 @@ function Dot(color: string, translation: { x: any; y: any; z: any; }) {
 
 function addPoint(x: number, y: number, z: number) {
   let dot = Dot('hsla(100, 60%, 50%, 1)', { x, y, z });
-  uni.addShape(dot);
+  uni.AddShape(dot);
 }
 
 function addRandomPoint() {
-  addPoint(
-    Math.random() * 200,
-    Math.random() * 200,
-    Math.random() * 200
+  uni.AddDot(
+    new Zdog.Vector(
+      {
+        x: Math.random() * 200,
+        y: Math.random() * 200,
+        z: Math.random() * 200
+      }
+    )
   )
 }
 
 // create illo
 
 function animate() {
-  
+
   uni.illo.rotate.y += 0.01;
-  uni.Render(1/60);
+  uni.Render(1 / 60);
   // animate next frame
   requestAnimationFrame(animate);
 }
