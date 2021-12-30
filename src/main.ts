@@ -33,14 +33,13 @@ function populate(amount: number) {
 populate(4);
 animate();
 
+setTimeout(() => {
+  uni.AddStick(0, 1, 150, '#000');
+  uni.AddStick(1, 2, 150, '#000');
+  uni.AddStick(2, 0, 150, '#000');
 
-setTimeout(() =>
-  setInterval(
-    () => {
+  uni.AddStick(0, 3, 150, '#066');
+  uni.AddStick(1, 3, 150, '#066');
+  uni.AddStick(2, 3, 150, '#066');
 
-      uni.Snap(0, 1, 60);
-      uni.Snap(1, 2, 60);
-      uni.Snap(0, 2, 60);
-    }, 1000
-  ), 8000
-);
+}, 5000);
