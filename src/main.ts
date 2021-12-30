@@ -29,5 +29,5 @@ function populate(amount: number) {
   }
 }
 
-populate(30);
+populate(5);
 animate();

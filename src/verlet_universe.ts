@@ -7,8 +7,18 @@ function RandomHueColorString(): string {
     return `hsla(${hue}, 60%, 50%, 1)`;
 }
 
+class Stick{
+    distance: number;
+
+    constructor(readonly begin: number, readonly end: number, distance: number)
+    {
+        this.distance = distance;
+    }
+}
+
 export class Universe {
     private readonly points: Vector[] = [];
+    private readonly sticks: Stick[] = [];
     readonly illo: Illustration;
 
     constructor(canvas: string) {
@@ -30,16 +40,17 @@ export class Universe {
         this.illo.updateRenderGraph();
     }
 
-    AddDot(translation: Vector): void {
-        this.AddShape(new Shape({
+    AddDot(translation: Vector): number {
+        return this.AddShape(new Shape({
             translate: translation,
             color: RandomHueColorString(),
             stroke: 25
         }))
     }
 
-    AddShape(shape: Shape): void {
+    AddShape(shape: Shape): number {
         this.illo.addChild(shape);
-        this.points.push(shape.translate);
+        return this.points.push(shape.translate) - 1;
     }
+
 }
