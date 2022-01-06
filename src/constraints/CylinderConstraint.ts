@@ -1,4 +1,3 @@
-import { Vector } from "zdog";
 import { Average } from "../VectorUtils";
 import { Constraint } from "./Constraint";
 
