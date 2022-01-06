@@ -1,6 +1,5 @@
 import * as Zdog from 'zdog';
-import { Snap } from './vector_utils';
-import { Universe } from './verlet_universe';
+import { Universe } from './VerletUniverse';
 
 let uni = new Universe('.inner');
 
@@ -18,16 +17,15 @@ function addRandomPoint(): number {
 
 new Zdog.Box({
   addTo: uni.illo,
-  width: 400,
-  height: 400,
-  depth : 400,
+  width: 600,
+  height: 600,
+  depth : 600,
   frontFace: false,
   backface : '#888',
   topFace : false,
   bottomFace: '#999',
   leftFace : false,
   rightFace: '#BBB'
-
 });
 
 new Zdog.Ellipse({

@@ -1,5 +1,6 @@
 import { Illustration, Shape, TAU, Vector } from 'zdog';
-import { AddToArray, Average, Snap } from './vector_utils';
+import { CylinderConstraint } from './constraints/CylinderConstraint';
+import { AddToArray, Average, Snap } from './VectorUtils';
 
 function RandomHueColorString(): string {
 
@@ -22,13 +23,17 @@ export class Universe {
     private readonly points: Vector[] = [];
     private readonly sticks: Stick[] = [];
     readonly illo: Illustration;
+    private readonly test: CylinderConstraint = new CylinderConstraint;
 
     constructor(canvas: string) {
         this.illo = new Illustration(
             {
                 element: canvas,
-                rotate : { x : -TAU / 8,
-                y : -TAU / 8 }
+                rotate: {
+                    x: -TAU / 8,
+                    y: -TAU / 8
+                },
+                dragRotate: true
             }
         );
     }
@@ -44,6 +49,7 @@ export class Universe {
             this.Snap(element.begin, element.end, element.distance);
         }
         this.sticks.forEach(callback);
+        this.test.Enforce();
     }
 
     Render(progress_inc: number) {
@@ -64,10 +70,12 @@ export class Universe {
         const transform = shape.translate.copy();
         this.illo.addChild(shape);
         shape.translate.set(transform);
+        this.test.Add(shape.translate);
         return this.points.push(shape.translate) - 1;
     }
 
     AddStick(begin: number, end: number, distance: number, color: string) {
+        return;
         const path = new Shape(
             {
                 color: color,
