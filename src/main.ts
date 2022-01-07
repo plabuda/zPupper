@@ -1,5 +1,6 @@
 import * as Zdog from 'zdog';
 import { Universe } from './VerletUniverse';
+import { WindowInterface } from './WindowInterface';
 
 let uni = new Universe('.zDogCanvas');
 
@@ -19,19 +20,19 @@ new Zdog.Box({
   addTo: uni.illo,
   width: 600,
   height: 600,
-  depth : 600,
+  depth: 600,
   frontFace: false,
-  backface : '#888',
-  topFace : false,
+  backface: '#888',
+  topFace: false,
   bottomFace: '#999',
-  leftFace : false,
+  leftFace: false,
   rightFace: '#BBB'
 });
 
 new Zdog.Ellipse({
   addTo: uni.illo,
-  translate: { y: 190},
-  rotate: { x : Zdog.TAU / 4},
+  translate: { y: 190 },
+  rotate: { x: Zdog.TAU / 4 },
   stroke: 20,
   diameter: 160,
   color: '#222',
@@ -41,8 +42,8 @@ new Zdog.Ellipse({
 
 new Zdog.Ellipse({
   addTo: uni.illo,
-  translate: { y: 180},
-  rotate: { x : Zdog.TAU / 4},
+  translate: { y: 180 },
+  rotate: { x: Zdog.TAU / 4 },
   stroke: 10,
   diameter: 60,
   color: '#DDD',
@@ -51,21 +52,9 @@ new Zdog.Ellipse({
 });
 
 function animate() {
-
- // uni.illo.rotate.y += 0.01;
   uni.Render(1 / 60);
   requestAnimationFrame(animate);
 }
-
-function populate(amount: number) {
-  if (amount > 0) {
-    addRandomPoint();
-    setTimeout(() => populate(amount - 1), 350);
-  }
-}
-
-//populate(4);
-animate();
 
 function* progress(): Generator {
   const distance = 160;
@@ -93,41 +82,13 @@ function* progress(): Generator {
 
   }
   return;
-  //let first = addRandomPoint();
-  let last = first;
-  yield;
-  uni.AddStick(pole, last, distance, '#066');
-  yield;
-  uni.AddStick(counterpole, last, distance, '#660');
-  yield
-  for (let i = 0; i < 5; i++) {
-    let next = addRandomPoint();
-    yield;
-    uni.AddStick(last, next, distance, '#000');
-    yield;
-    uni.AddStick(pole, next, distance, '#066');
-    yield;
-    uni.AddStick(counterpole, next, distance, '#660');
-    yield
-
-    last = next;
-
-  }
-
-  uni.AddStick(first, last, distance, '#000');
 }
+
+animate();
+
+const wi = new WindowInterface();
+wi.OnSubmitHandler = () => { console.log('Test'); return false; };
 
 const iterator = progress();
 
 setInterval(() => iterator.next(), 50);
-
-// setTimeout(() => {
-//   uni.AddStick(0, 1, 150, '#000');
-//   uni.AddStick(1, 2, 150, '#000');
-//   uni.AddStick(2, 0, 150, '#000');
-
-//   uni.AddStick(0, 3, 150, '#066');
-//   uni.AddStick(1, 3, 150, '#066');
-//   uni.AddStick(2, 3, 150, '#066');
-
-// }, 5000);

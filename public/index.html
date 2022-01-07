@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="https://cdn.skypack.dev/-/holiday.css@v0.9.5-Jl4gV7y2zMps6H5ZtJC8/dist=es2020,mode=raw/dist/holiday.css">
+    <link rel="stylesheet"
+        href="https://cdn.skypack.dev/-/holiday.css@v0.9.5-Jl4gV7y2zMps6H5ZtJC8/dist=es2020,mode=raw/dist/holiday.css">
 </head>
 <html>
 <style>
@@ -26,6 +27,15 @@
         align-self: center;
         position: relative;
         width: 600px;
+        display: inline-flex;
+        flex-direction: column;
+        background-color: transparent;
+    }
+
+    .displayContainer {
+        align-self: center;
+        position: relative;
+        width: 600px;
         height: 600px;
         display: inline-flex;
     }
@@ -38,20 +48,30 @@
 
     pre {
         position: absolute;
-        margin-left: 15px;
-        margin-top: 15px;
+        left: 15px;
         font-size: 16px;
         z-index: 1;
+        max-width: 30%;
+    }
+
+    input {
+        margin: 5px 0px;
+        font-family: 'Courier New', Courier, monospace;
     }
 </style>
 
 <body>
-    <div class="appContainer" style="background-color: #F0B;">
-        <canvas class="zDogCanvas" width="600" height="600"></canvas>
-        <pre>10 : HELLO <span style="display: block; font-style: italic; font-weight: bolder;">20 : DOG</span></pre>
+
+    <div class="appContainer">
+        <div class="displayContainer">
+            <canvas class="zDogCanvas" width="600" height="600"></canvas>
+            <pre>10 : HELLO <span style="display: block; font-style: italic; font-weight: bolder;">20 : DOG</span></pre>
+        </div>
+        <form>
+            <input type="text" placeholder="type HELP to display available commands">
+        </form>
     </div>
     <script src="scripts/main.js" type="module"></script>
-    <input style="font-family: 'Courier New', Courier, monospace;" type="text" >
 </body>
 
 </html>
