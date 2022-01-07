@@ -16,6 +16,7 @@
         display: inline-flex;
         justify-content: space-evenly;
         overflow: hidden;
+        background-color: #BBB;
     }
 
     .appContainer {
@@ -24,18 +25,29 @@
         width: 600px;
         height: 600px;
         display: inline-flex;
+    }
 
+    .zDogCanvas {
+        position: absolute;
+        background-color: #ABC;
+        z-index: 0;
+    }
+
+    pre {
+        position: absolute;
+        margin-left: 15px;
+        margin-top: 15px;
+        font-size: 16px;
+        z-index: 1;
     }
 </style>
 
 <body>
     <div class="appContainer" style="background-color: #F0B;">
-        <canvas style="position: absolute; background-color: #ABC;" width="600" height="600"> </canvas>
-        <div style="position: absolute; background-color: violet; width: 50px; height: 200px; left: 20px;">
-            Ayoo
-
-        </div>
+        <canvas class="zDogCanvas" width="600" height="600"></canvas>
+        <pre>HELLO <span style="display: block; font-style: italic; font-weight: bolder;">DOG</span></pre>
     </div>
+    <script src="scripts/main.js" type="module"></script>
 </body>
 
 </html>

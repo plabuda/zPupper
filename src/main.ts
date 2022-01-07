@@ -1,7 +1,7 @@
 import * as Zdog from 'zdog';
 import { Universe } from './VerletUniverse';
 
-let uni = new Universe('.inner');
+let uni = new Universe('.zDogCanvas');
 
 function addRandomPoint(): number {
   return uni.AddDot(
