@@ -1,23 +1,8 @@
 <!DOCTYPE html>
+
 <head></head>
 <html>
 <style>
-    .container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-    }
-
-    .inner {
-        height: 600px;
-        width: 600px;
-        background: #FAB;
-    }
-
     html {
         margin: 0px;
         height: 100%;
@@ -28,14 +13,29 @@
         margin: 0px;
         height: 100%;
         width: 100%;
+        display: inline-flex;
+        justify-content: space-evenly;
+        overflow: hidden;
+    }
+
+    .appContainer {
+        align-self: center;
+        position: relative;
+        width: 600px;
+        height: 600px;
+        display: inline-flex;
+
     }
 </style>
 
 <body>
-    <div class="container">
-        <canvas class="inner" width="600" height="600"></canvas>
+    <div class="appContainer" style="background-color: #F0B;">
+        <canvas style="position: absolute; background-color: #ABC;" width="600" height="600"> </canvas>
+        <div style="position: absolute; background-color: violet; width: 50px; height: 200px; left: 20px;">
+            Ayoo
+
+        </div>
     </div>
-    <script src="scripts/main.js" type="module"></script>
 </body>
 
 </html>
